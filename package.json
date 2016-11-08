@@ -1,7 +1,7 @@
 {
   "name": "hubot-paraderos-transantiago",
   "description": "Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado paradero",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Fabian General <fabianwgl@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -11,9 +11,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/fabianwgl/hubot-paraderos-transantiago.git"
-  },
-  "bugs": {
-    "url": "https://github.com/fabianwgl/hubot-paraderos-transantiago/issues"
   },
   "dependencies": {
     "transantiago-client": "^1.0.2"
