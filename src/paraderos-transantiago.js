@@ -14,7 +14,8 @@ module.exports = function(robot) {
   robot.hear(/tstop (.*)/, function(res){
     var paradero = escape(res.match[1]);
     if(paradero!="" || paradero!=null){
-      tsapi(paradero).then( r => {
+      tsapi(paradero).then(function(r) {
+
       var json = JSON.stringify(r);
       var respuesta = "";
 
@@ -32,7 +33,7 @@ module.exports = function(robot) {
       }
 
         return res.send(respuesta);
-      }).catch(err => {
+      }).catch(function(err) {
         return res.send(err);
       });
     }

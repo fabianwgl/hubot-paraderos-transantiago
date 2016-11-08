@@ -2,7 +2,7 @@
 
 Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado paradero
 
-See [`src/paraderos-transantiago.coffee`](src/paraderos-transantiago.coffee) for full documentation.
+See [`src/paraderos-transantiago.js`](src/paraderos-transantiago.js) for full documentation.
 
 ## Instalación
 
@@ -17,6 +17,10 @@ Añadir **hubot-paraderos-transantiago** a `external-scripts.json`:
   "hubot-paraderos-transantiago"
 ]
 ```
+
+## Uso
+
+`hubot tstop PA14`
 
 ## NPM Module
 
