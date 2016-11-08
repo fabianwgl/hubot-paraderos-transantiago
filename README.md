@@ -4,25 +4,18 @@ Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado
 
 See [`src/paraderos-transantiago.coffee`](src/paraderos-transantiago.coffee) for full documentation.
 
-## Installation
+## Instalación
 
-In hubot project repo, run:
+En la raíz de hubot:
 
-`npm install hubot-paraderos-transantiago --save`
+`npm i -S hubot-paraderos-transantiago`
 
-Then add **hubot-paraderos-transantiago** to your `external-scripts.json`:
+Añadir **hubot-paraderos-transantiago** a `external-scripts.json`:
 
 ```json
 [
   "hubot-paraderos-transantiago"
 ]
-```
-
-## Sample Interaction
-
-```
-user1>> hubot hello
-hubot>> hello!
 ```
 
 ## NPM Module
