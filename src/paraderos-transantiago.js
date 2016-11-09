@@ -11,7 +11,7 @@ var tsapi = require("transantiago-client");
 
 module.exports = function(robot) {
 
-  robot.hear(/tstop (.*)/, function(res){
+  robot.respond(/tstop (.*)/, function(res){
     var paradero = escape(res.match[1]);
     if(paradero!="" || paradero!=null){
       tsapi(paradero).then(function(r) {
