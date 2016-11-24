@@ -1,7 +1,7 @@
 {
   "name": "hubot-paraderos-transantiago",
   "description": "Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado paradero",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Fabian General <fabianwgl@gmail.com>",
   "license": "MIT",
   "bugs": {
