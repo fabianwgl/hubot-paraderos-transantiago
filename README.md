@@ -20,7 +20,7 @@ Añadir **hubot-paraderos-transantiago** a `external-scripts.json`:
 
 ## Uso
 
-`hubot tstop PA14`
+`hubot paradero PA14`
 
 ## NPM Module
 
