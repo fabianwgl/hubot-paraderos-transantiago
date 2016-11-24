@@ -2,7 +2,7 @@
 //   Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado paradero
 //
 // Commands:
-//   hubot tstop [codigo_paradero] <devuelve los recorridos cercanos>
+//   hubot paradero [codigo_paradero] <devuelve los recorridos cercanos>
 //
 // Author:
 //   Fabian General <fabianwgl@gmail.com>
@@ -11,7 +11,7 @@ var tsapi = require("transantiago-client");
 
 module.exports = function(robot) {
 
-  robot.respond(/tstop (.*)/, function(res){
+  robot.respond(/paradero (.*)/i, function(res){
     var paradero = escape(res.match[1]);
     if(paradero!="" || paradero!=null){
       tsapi(paradero).then(function(r) {
