@@ -7,35 +7,56 @@
 // Author:
 //   Fabian General <fabianwgl@gmail.com>
 
-var tsapi = require("transantiago-client");
+'use strict';
 
-module.exports = function(robot) {
+const tsapi = require('transantiago-client');
 
-  robot.respond(/paradero (.*)/i, function(res){
-    var paradero = escape(res.match[1]);
-    if(paradero!="" || paradero!=null){
-      tsapi(paradero).then(function(r) {
+module.exports = robot => {
+  const flatten = list => list.reduce((a, b) =>
+    a.concat(Array.isArray(b) ? flatten(b) : b), []
+  );
 
-      var json = JSON.stringify(r);
-      var respuesta = "";
-
-      for(var i in r.avail){
-
-        respuesta += "Servicio: "+r.avail[i].service;
-        for(var j in r.avail[i].buses){
-
-          respuesta += "\n";
-          respuesta += "BUS: "+r.avail[i].buses[j].bus+" ";
-          respuesta += "LLEGADA: "+r.avail[i].buses[j].arrivaltime+" ";
-          respuesta += "DISTANCIA: "+r.avail[i].buses[j].dist+" ";
-        }
-        respuesta += " \n";
-      }
-
-        return res.send(respuesta);
-      }).catch(function(err) {
-        return res.send(err);
+  const sortData = data => {
+    return flatten(data.avail.map(x => {
+      return x.buses.map(y => {
+        const distance = parseInt(y.dist.replace(/[mts.\s]/g, ''));
+        return {
+          name: `${x.service}: ${y.bus}`,
+          time: y.arrivaltime,
+          distance: distance
+        };
       });
+    })).sort((a, b) => a.distance > b.distance);
+  };
+
+  const makeAttachments = data => {
+    const fields = data.map(x => ({
+      title: x.name,
+      value: `:clock4: ${x.time} (${x.distance}m)`,
+      short: true
+    }));
+    const text = data.map(x =>
+      `${x.name}, :clock4: ${x.time} (${x.distance}m)`
+    ).join('\n');
+    return {
+      as_user: true,
+      link_names: 1,
+      attachments: [{fallback: text, color: '#36a64f', fields: fields}]
+    };
+  };
+
+  robot.respond(/paradero (.*)/i, res => {
+    const paradero = escape(res.match[1]);
+    if (paradero !== '' || paradero !== null) {
+      tsapi(paradero)
+        .then(sortData)
+        .then(makeAttachments)
+        .then(options =>
+          robot.adapter.client.web.chat.postMessage(res.message.room, null, options)
+        ).catch(err => {
+          res.send(`Ocurrio un error. Error: ${err.message}`);
+          robot.emit('error', err);
+        });
     }
   });
-}
+};
