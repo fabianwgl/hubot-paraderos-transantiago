@@ -26,7 +26,15 @@ module.exports = robot => {
           distance: distance
         };
       });
-    })).sort((a, b) => a.distance > b.distance);
+    })).sort((a, b) => {
+      if (a.distance < b.distance) {
+        return -1;
+      } else if (a.distance > b.distance) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   };
 
   const makeAttachments = data => {
