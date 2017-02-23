@@ -1,4 +1,5 @@
 # hubot-paraderos-transantiago
+<a href="https://badge.fury.io/js/hubot-paraderos-transantiago"><img src="https://badge.fury.io/js/hubot-paraderos-transantiago.svg" alt="npm version" height="18"></a>
 
 Informa la disponibilidad de recorridos y el tiempo de llegada de un determinado paradero
 
